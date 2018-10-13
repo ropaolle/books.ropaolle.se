@@ -57,7 +57,7 @@ class App extends Component {
     ));
 
     const info = data.filter(el => el.uuid === selected).map(el => (
-      <div className="Box Focus" key={el._id}>
+      <div className="Info" key={el._id}>
         <Image cloudName="dw2asxnil" publicId={`/books/${el.uuid}.jpg`} width="200" height="300" crop="scale" />
         <div className="font-weight-bold mt-2">{el.title}</div>
         <div>{el.authors}</div>
@@ -70,18 +70,21 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header"><p>books.ropaolle.se</p></header>
-        <div className="row">
 
-          <div className="col-md-9">
-            <div className="Wrapper">
-              {cssGrid}
+        <div className="container-fluid">
+          <div className="row">
+
+            <div className="col-md-9">
+              <div className="Wrapper">
+                {cssGrid}
+              </div>
             </div>
+            <div className="col-md-3 bg-light">{info}</div>
+
           </div>
-          <div className="col-md-3 bg-light">{info}</div>
-        </div>
 
 
-        {/* <div className="row">
+          {/* <div className="row">
           {grid}
         </div>
 
@@ -97,6 +100,7 @@ class App extends Component {
             <tbody>{table}</tbody>
           </table>
         </div> */}
+        </div>
       </div>
     );
   }
