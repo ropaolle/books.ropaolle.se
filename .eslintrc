@@ -2,6 +2,9 @@
   "parser": "babel-eslint",
   "plugins": ["react"],
   "extends": ["airbnb"],
+  "env": {
+    "browser": true
+  },
   "rules": {
     "no-undef": [1],
     "react/prefer-stateless-function": 0,
