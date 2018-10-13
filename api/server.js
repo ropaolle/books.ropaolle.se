@@ -8,7 +8,7 @@ const port = process.env.PORT || 3001;
 
 mongoose.connect(
   'mongodb://book:ez0A16fUyHgS@192.168.10.100:27017/books',
-  { useNewUrlParser: true },
+  { useNewUrlParser: true, useCreateIndex: true },
 );
 const db = mongoose.connection;
 
@@ -23,7 +23,7 @@ const bookSchema = new mongoose.Schema({
   coverUnix: String,
   size: String,
   languages: String,
-  uuid: String,
+  uuid: { type: String, unique: true },
 });
 
 const Book = mongoose.model('Book', bookSchema);
@@ -83,7 +83,6 @@ const parse = require('csv-parser');
 const parser = parse({ separator: ',' });
 const fs = require('fs');
 const upath = require('upath');
-const sharp = require('sharp');
 
 const results = [];
 
@@ -95,31 +94,24 @@ readStream
   .on('data', (data) => {
     const coverUnix = upath.toUnix(data.cover).replace('C:', '/mnt/c');
     const coverUnixDest = `/mnt/c/SAVE/GitHub/books.ropaolle.se/api/images/${data.uuid}.jpg`;
-    const update = {
-      ...data,
-      coverUnix,
-      coverUnixThumb: `${upath.parse(coverUnix).dir}/cover-thumb.jpg`,
-    };
-
     fs.copyFile(coverUnix, coverUnixDest, (err) => {
       if (err) throw err;
       // console.log('source.txt was copied to destination.txt');
     });
-    // data.coverUnix = upath.toUnix(data.cover).replace('C:', '/mnt/c');
-    // data.coverUnixThumb = `${upath.parse(data.coverUnix).dir}/cover-thumb.jpg`;
-    // sharp(coverUnix)
-    // .resize(300)
-    // // .webp({quality: 60 })
-    // .jpeg({quality: 60})
-    // .toFile(data.coverUnixThumb)
-    // .then(() => 'thumbnail')
-    // .catch(err => console.error(err));
 
-    results.push(update);
+    results.push(data);
   })
   .on('error', (err) => {
     console.error(err);
   })
-  .on('end', () => {
-    // Book.insertMany(results).then(res => console.info('Books added:', res.length));
+  .on('end', async () => {
+    await Book.insertMany(results, { ordered: false })
+      .then(res => console.info('Books added:', res.length))
+      .catch((err) => {
+        if (err.code !== 11000) {
+          console.error(err);
+        } else {
+          console.info('Books added: E11000 duplicate detected!');
+        }
+      });
   });

@@ -52,7 +52,7 @@ class App extends Component {
 
     const cssGrid = data.map(el => (
       <div className="Box Focus" key={el._id} tabIndex="0" onClick={this.handleClick.bind(this, el.uuid)} onKeyPress={this.handleKeyPress} role="button">
-        <Image cloudName="dw2asxnil" publicId={`/books/${el.uuid}.jpg`} width="125" height="187" crop="scale" />
+        <Image cloudName="dw2asxnil" publicId={`/books/${el.uuid}.jpg`} width="125" height="188" crop="scale" />
       </div>
     ));
 
@@ -61,8 +61,8 @@ class App extends Component {
         <Image cloudName="dw2asxnil" publicId={`/books/${el.uuid}.jpg`} width="200" height="300" crop="scale" />
         <div className="font-weight-bold mt-2">{el.title}</div>
         <div>{el.authors}</div>
-        {el.tags && <div className="small mb-3">Taggar: {el.tags}</div>}
-        <div>{el.comments}</div>
+        {el.tags && <div className="small">Taggar: {el.tags}</div>}
+        <div className="mt-3">{el.comments}</div>
       </div>
     ));
 
