@@ -41,7 +41,7 @@ touch .eslintrc
 
 ### Hyper-V
 
-User: olle/retro1971
+Login: olle/retro1971
 
 ```bash
 # Add keys ./ssh/id_rsa och ./ssh/id_rsa.pub
