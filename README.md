@@ -39,6 +39,13 @@ touch .eslintrc
 }
 ```
 
+### LoopBack CLI
+[LoopBack](https://loopback.io/doc/en/lb3/Installation.html)
+```bash
+npm install -g loopback-cli
+lb
+```
+
 ### Hyper-V
 
 Login: olle/retro1971

@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/api/node_modules
 
 # testing
 /coverage
@@ -9,7 +10,9 @@
 # production
 /build
 
+
 # misc
+/api/images
 .DS_Store
 .env.local
 .env.development.local
