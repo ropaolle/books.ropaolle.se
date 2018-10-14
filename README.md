@@ -40,7 +40,9 @@ touch .eslintrc
 ```
 
 ### LoopBack CLI
+
 [LoopBack](https://loopback.io/doc/en/lb3/Installation.html)
+
 ```bash
 npm install -g loopback-cli
 lb
@@ -68,33 +70,11 @@ sudo add-apt-repository universe # Add
 sudo add-apt-repository -r universe # Remove
 ```
 
-### Old lint rules
+### Eslint rules
 
 ```bash
-{
-  "root": true,
-  "extends": ["plugin:promise/recommended", "airbnb"],
-  "plugins": ["react", "promise"],
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "jest": true
-  },
   "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ]
+     "no-unused-vars": 0,
+    "react/no-unused-state": 0,
   }
-}
 ```

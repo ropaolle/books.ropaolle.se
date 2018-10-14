@@ -2,7 +2,7 @@ const neatCsv = require('neat-csv');
 const fs = require('fs-extra');
 const upath = require('upath');
 const cloudinary = require('cloudinary');
-const compact = require('lodash/compact');
+// const compact = require('lodash/compact');
 
 cloudinary.config({
   cloud_name: 'dw2asxnil',
