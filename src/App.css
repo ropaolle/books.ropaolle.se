@@ -26,6 +26,7 @@
 
 .Sidebar {
   grid-area: sidebar;  
+  background-color: #eee;
 }
 
 .Content {
@@ -48,7 +49,7 @@
 .Info-wrapper {
   position: fixed;
   padding: 20px;
-  background-color: #eee;
+  
 }
 
 .Info {  
